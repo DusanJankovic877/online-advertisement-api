@@ -63,4 +63,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    public function advertisements(){
+        return $this->hasMany(App\Model\Advertisement::class);
+    }
 }
