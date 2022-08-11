@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class AuthController extends Controller  
 {
     /**
      * Create a new AuthController instance.
@@ -14,9 +17,24 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
+    /**
+     * Register via given credentials.
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(CreateUserRequest $request){
+        $validated = $request->validated();
+        $user = User::create([
+            'name' => $validated['name'],
+            'password' => Hash::make($validated['password']),
+            'telephone' => $validated['telephone']
+        ]);
 
+        $token = auth()->login($user);
+        return $this->respondWithToken($token);
+    }
     /**
      * Get a JWT via given credentials.
      *
