@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+// use App\Http\Requests\LoginUserRequest;
+use Illuminate\Http\Request;
 class AuthController extends Controller  
 {
     /**
@@ -25,11 +25,11 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function register(CreateUserRequest $request){
-        $validated = $request->validated();
+        $credentials = $request->validated();
         $user = User::create([
-            'name' => $validated['name'],
-            'password' => Hash::make($validated['password']),
-            'telephone' => $validated['telephone']
+            'name' => $credentials['name'],
+            'password' => Hash::make($credentials['password']),
+            'telephone' => $credentials['telephone']
         ]);
 
         $token = auth()->login($user);
@@ -40,12 +40,13 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
-      
-        $credentials = request(['name', 'password']);
-
-        if (! $token = auth()->attempt($credentials)) {
+        $request->validate([            
+            'name' => 'required|string|max:15|min:6',
+            'password' => 'required|string|max:15|min:6'
+        ]);
+        if (! $token = auth()->attempt($request->only('name', 'password'))) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
