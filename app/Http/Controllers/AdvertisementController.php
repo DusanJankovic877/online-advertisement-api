@@ -6,6 +6,7 @@ use App\Models\Advertisement;
 use Illuminate\Http\Request;
 class AdvertisementController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

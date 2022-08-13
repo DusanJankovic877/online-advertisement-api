@@ -8,9 +8,7 @@ class UserController extends Controller
 {
     public function getUsersAdvertisements(){
         $userId = request('users-advertisements');
-        // return $userId;
         $advertisements = User::getUsersAvertisements($userId);
         return $advertisements;
-
     }
 }
