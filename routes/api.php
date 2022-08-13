@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdvertisementController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +30,7 @@ Route::group([
     Route::get('get-advertisements-by-category', [ AdvertisementController::class, 'getAdvertisementsByCategory' ]);
     Route::get('get-advertisements-by-title', [ AdvertisementController::class, 'getAdvertisementsByTitle' ]);
     Route::get('get-advertisements-by-price', [ AdvertisementController::class, 'getAdvertisementsByPrice' ]);
+    Route::get('get-users-advertisements', [ UserController::class, 'getUsersAdvertisements' ]);
 });
 Route::group([
 
