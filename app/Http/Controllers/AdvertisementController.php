@@ -53,7 +53,7 @@ class AdvertisementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -62,9 +62,12 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function show(Advertisement $advertisement)
+    public function show(Request $request)
     {
         //
+        // return $request['id'];
+        $advertisement = Advertisement::findOrFail($request['id']);
+        return $advertisement;
     }
 
     /**
