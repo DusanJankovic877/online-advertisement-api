@@ -17,8 +17,8 @@ class AdvertisementFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->name(),
-            'description' => fake()->safeEmail(),
+            'title' => fake()->text(50),
+            'description' => fake()->text(100),
             'image_url' => fake()->imageUrl($width = 640, $height = 480, 'cats', true, 'Faker', true),
             'price' => fake()->numberBetween(10,50),
             'category' => fake()->word(),

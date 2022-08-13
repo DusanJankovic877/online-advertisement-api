@@ -21,4 +21,16 @@ class Advertisement extends Model
     public function user(){
         return $this->belongsTo(App\Model\User::class);
     }
+    public static function searchByCategory($category){
+        $advertisements = Advertisement::where('category', 'like', '%' . $category . '%')->paginate(20);
+        return $advertisements;
+    }
+    public static function searchByTitle($title){
+        $advertisements = Advertisement::where('title', 'like', '%' . $title . '%')->paginate(20);
+        if($title === ''){
+            return Advertisement::paginate(20);
+        }else{
+            return $advertisements;
+        }
+    }
 }

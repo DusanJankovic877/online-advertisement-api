@@ -16,6 +16,17 @@ class AdvertisementController extends Controller
         $advertisements = Advertisement::paginate(20);
         return $advertisements;
     }
+    public function getAdvertisementsByCategory(){
+        $category = request('category');
+        // return $category;
+        $advertisements = Advertisement::searchByCategory($category);
+        return $advertisements;
+    }
+    public function getAdvertisementsByTitle(){
+        $title = request('title');
+        $advertisements = Advertisement::searchByTitle($title);
+        return $advertisements;
+    }
 
     /**
      * Show the form for creating a new resource.
