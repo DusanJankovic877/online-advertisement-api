@@ -29,6 +29,7 @@ Route::group([
     Route::get('get-advertisements', [ AdvertisementController::class, 'index' ]);
     Route::get('get-advertisements-by-category', [ AdvertisementController::class, 'getAdvertisementsByCategory' ]);
     Route::get('get-advertisements-by-title', [ AdvertisementController::class, 'getAdvertisementsByTitle' ]);
+    Route::get('get-advertisements-by-price', [ AdvertisementController::class, 'getAdvertisementsByPrice' ]);
 });
 Route::group([
 

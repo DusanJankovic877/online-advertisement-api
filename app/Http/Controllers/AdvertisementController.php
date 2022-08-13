@@ -27,6 +27,12 @@ class AdvertisementController extends Controller
         $advertisements = Advertisement::searchByTitle($title);
         return $advertisements;
     }
+    public function getAdvertisementsByPrice(){
+        $price = request('price');
+        $advertisements = Advertisement::searchByPrice($price);
+        return $advertisements;
+
+    }
 
     /**
      * Show the form for creating a new resource.

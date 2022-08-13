@@ -33,4 +33,16 @@ class Advertisement extends Model
             return $advertisements;
         }
     }
+    public static function searchByPrice($price){
+        
+        if($price === ''){
+            return Advertisement::paginate(20);
+        }else if($price === 'Min'){
+            $advertisements = Advertisement::orderBy('price', 'ASC')->paginate(20);
+            return $advertisements;
+        }else if($price === 'Max'){
+            $advertisements = Advertisement::orderBy('price', 'DESC')->paginate(20);
+            return $advertisements;
+        }
+    }
 }
