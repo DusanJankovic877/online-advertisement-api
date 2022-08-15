@@ -6,9 +6,5 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function getUsersAdvertisements(){
-        $userId = request('users-advertisements');
-        $advertisements = User::getUsersAvertisements($userId);
-        return $advertisements;
-    }
+
 }

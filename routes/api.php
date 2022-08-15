@@ -28,10 +28,10 @@ Route::group([
 ], function ($router) {
     Route::get('get-advertisements', [ AdvertisementController::class, 'index' ]);
     Route::post('get-advertisement', [ AdvertisementController::class, 'show' ]);
-    Route::get('get-advertisements-by-category', [ AdvertisementController::class, 'getAdvertisementsByCategory' ]);
-    Route::get('get-advertisements-by-title', [ AdvertisementController::class, 'getAdvertisementsByTitle' ]);
-    Route::get('get-advertisements-by-price', [ AdvertisementController::class, 'getAdvertisementsByPrice' ]);
-    Route::get('get-users-advertisements', [ UserController::class, 'getUsersAdvertisements' ]);
+    Route::get('filter-adverts', [ AdvertisementController::class, 'filterAverts' ]);
+    Route::post('edit-advertisement', [ AdvertisementController::class, 'update' ]);
+    Route::post('create-advertisement', [ AdvertisementController::class, 'create' ]);
+
 });
 Route::group([
 

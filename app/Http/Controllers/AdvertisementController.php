@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateAdvertisementRequest;
+use App\Http\Requests\UpdateAdvertisementRequest;
+use App\Domain\FilterParams;
+
 class AdvertisementController extends Controller
 {
 
@@ -17,45 +21,35 @@ class AdvertisementController extends Controller
         $advertisements = Advertisement::paginate(20);
         return $advertisements;
     }
-    public function getAdvertisementsByCategory(){
+    public function filterAverts(){
         $category = request('category');
-        // return $category;
-        $advertisements = Advertisement::searchByCategory($category);
-        return $advertisements;
-    }
-    public function getAdvertisementsByTitle(){
-        $title = request('title');
-        $advertisements = Advertisement::searchByTitle($title);
-        return $advertisements;
-    }
-    public function getAdvertisementsByPrice(){
-        $price = request('price');
-        $advertisements = Advertisement::searchByPrice($price);
-        return $advertisements;
+        $title = request('title') === 'null' ? '' : request('title');
+        $priceOrder = request('priceOrder');
+        $userId = request('userId');
+        $filterParams = new FilterParams($category, $title ,$priceOrder, $userId);
 
+        $advertisements = Advertisement::filterAds($filterParams);
+        return response()->json($advertisements);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CreateAdvertisementRequest $request)
     {
-        //
+        $validated = $request->validated();
+        Advertisement::create([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'image_url' => $validated['image_url'],
+            'price' => $validated['price'],
+            'user_id' => $validated['user_id'],
+            'category' => $validated['category'],
+            'city' => $validated['city']
+        ]);
+        return response()->json(['message' => 'Avertisement succesfully created.']);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
-
     /**
      * Display the specified resource.
      *
@@ -64,23 +58,9 @@ class AdvertisementController extends Controller
      */
     public function show(Request $request)
     {
-        //
-        // return $request['id'];
         $advertisement = Advertisement::findOrFail($request['id']);
         return $advertisement;
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Advertisement  $advertisement
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Advertisement $advertisement)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -88,9 +68,22 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Advertisement $advertisement)
+    public function update(UpdateAdvertisementRequest $request)//public function update(Request $request, Advertisement $advertisement)
     {
-        //
+        $advertisement  = Advertisement::findOrFail($request['id']);
+        $validated = $request->validated();
+        $advertisement->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'image_url' => $validated['image_url'],
+            'price' => $validated['price'],
+            'city' => $validated['city'],
+            'category' => $validated['category']
+        ]);
+        return response()->json([
+            'message' => 'You have successfuly updated your advertisement', 
+            'advertisement' => $advertisement
+        ]);
     }
 
     /**
