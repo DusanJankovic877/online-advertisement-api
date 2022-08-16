@@ -48,7 +48,7 @@ class AdvertisementController extends Controller
             'category' => $validated['category'],
             'city' => $validated['city']
         ]);
-        return response()->json(['message' => 'Avertisement succesfully created.']);
+        return response()->json(['message' => 'Avertisement successfully created.']);
     }
     /**
      * Display the specified resource.
@@ -81,7 +81,7 @@ class AdvertisementController extends Controller
             'category' => $validated['category']
         ]);
         return response()->json([
-            'message' => 'You have successfuly updated your advertisement.', 
+            'message' => 'You have successfully updated your advertisement.', 
             'advertisement' => $advertisement
         ]);
     }
@@ -92,8 +92,14 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Advertisement $advertisement)
+    public function destroy($id)
     {
-        //
+        // return ['works' => $id];
+        $advertisementToDelete = Advertisement::findOrFail($id);
+        $advertisementToDelete->delete();
+        return response()->json([
+            'oneItemMessage' => 'You have successfully delete advertisement', 
+            'oneItemDelete' => true
+        ]);
     }
 }

@@ -29,8 +29,9 @@ Route::group([
     Route::get('get-advertisements', [ AdvertisementController::class, 'index' ]);
     Route::post('get-advertisement', [ AdvertisementController::class, 'show' ]);
     Route::get('filter-adverts', [ AdvertisementController::class, 'filterAverts' ]);
-    Route::post('edit-advertisement', [ AdvertisementController::class, 'update' ]);
+    Route::put('edit-advertisement', [ AdvertisementController::class, 'update' ]);
     Route::post('create-advertisement', [ AdvertisementController::class, 'create' ]);
+    Route::delete('delete-advertisement/{id}', [ AdvertisementController::class, 'destroy' ]);
 
 });
 Route::group([
