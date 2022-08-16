@@ -36,49 +36,12 @@ class Advertisement extends Model
             $advertisements = Advertisement::where($filterParameters->formQueryParams())
             ->orderBy(Advertisement::COLUMN_PRICE, $filterParameters->priceOrder)
             ->paginate(20);
-
-     
         }else {
             $advertisements = Advertisement::where($filterParameters->formQueryParams())
             ->paginate(20);
-
         }
         return $advertisements;
-
     }
 
-    public static function searchByCategory($category){
-        //$advertisements = Advertisement::where(['category' => $category,'title like' => '%' . $title . '%' ])->where()->paginate(20);
-        
-        $advertisements = Advertisement::
-        where('category', $category)
-        ->where('title', 'like', '')
-        ->where('user_id', '')
-        ->orderBy('price', 'ASC')
-        ->paginate(20);
 
-
-
-        return $advertisements;
-    }
-    public static function searchByTitle($title){
-        $advertisements = Advertisement::where('title', 'like', '%' . $title . '%')->paginate(20);
-        if($title === ''){
-            return Advertisement::paginate(20);
-        }else{
-            return $advertisements;
-        }
-    }
-    public static function searchByPrice($price){
-        
-        if($price === ''){
-            return Advertisement::paginate(20);
-        }else if($price === 'Min'){
-            $advertisements = Advertisement::orderBy('price', 'ASC')->paginate(20);
-            return $advertisements;
-        }else if($price === 'Max'){
-            $advertisements = Advertisement::orderBy('price', 'DESC')->paginate(20);
-            return $advertisements;
-        }
-    }
 }
