@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advertisement extends Model
 {
+    use HasFactory;
+
     const COLUMN_TITLE = 'title';
     const COLUMN_DESCRIPTION = 'description';
     const COLUMN_IMAGE_URL = 'image_url';
@@ -15,7 +17,6 @@ class Advertisement extends Model
     const COLUMN_USER_ID = 'user_id';
     const COLUMN_CITY = 'city';
     
-    use HasFactory;
     
     protected $fillable = [
         self::COLUMN_TITLE,
@@ -29,6 +30,10 @@ class Advertisement extends Model
     public function user(){
         return $this->belongsTo(App\Model\User::class);
     }
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+    
 
     public static function filterAds($filterParameters){
         $advertisements = '';

@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('description', 200);
             $table->string('image_url', 200);
             $table->decimal('price', 5,2);
-            $table->string('category', 40);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->unsignedBigInteger('category_id', 40);
+            // $table->string('category', 40);
+            $table->foreignId('category_id')->references('id')->on('categories');
+            // $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('city', 20);
             $table->timestamps();
         });

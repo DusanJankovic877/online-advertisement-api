@@ -18,7 +18,7 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $advertisements = Advertisement::paginate(20);
+        $advertisements = Advertisement::with('category')->paginate(20);
         return $advertisements;
     }
     public function filterAverts(){
@@ -58,7 +58,7 @@ class AdvertisementController extends Controller
      */
     public function show(Request $request)
     {
-        $advertisement = Advertisement::findOrFail($request['id']);
+        $advertisement = Advertisement::with('category')->findOrFail($request['id']);
         return $advertisement;
     }
     /**
