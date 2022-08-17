@@ -65,8 +65,4 @@ class User extends Authenticatable implements JWTSubject
     public function advertisements(){
         return $this->hasMany(App\Model\Advertisement::class);
     }
-    public static function getUsersAvertisements($userId){
-        $advertisements = Advertisement::where('user_id', $userId)->paginate(20);
-        return $advertisements;
-    }
 }
