@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Database\Eloquent\Factories\Sequence;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -27,10 +27,10 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $randomItem = array_rand($this->categories);
-        $realRandomItem = $this->categories[$randomItem];
-        return [
-            'title' => $realRandomItem
-        ];
-    }
+
+            return [
+                'title' => 'Technology'
+            ];
+        }
+
 }

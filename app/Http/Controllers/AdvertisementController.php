@@ -39,13 +39,13 @@ class AdvertisementController extends Controller
     public function create(CreateAdvertisementRequest $request)
     {
         $validated = $request->validated();
-        $createdAdvertisement = Advertisement::create([
+        Advertisement::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
             'image_url' => $validated['image_url'],
             'price' => $validated['price'],
             'user_id' => $validated['user_id'],
-            'category' => $validated['category'],
+            'category_id' => $validated['category'],
             'city' => $validated['city']
         ]);
         return response()->json(['message' => 'Avertisement successfully created.']);

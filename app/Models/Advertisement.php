@@ -13,7 +13,7 @@ class Advertisement extends Model
     const COLUMN_DESCRIPTION = 'description';
     const COLUMN_IMAGE_URL = 'image_url';
     const COLUMN_PRICE = 'price';
-    const COLUMN_CATEGORY = 'category';
+    const COLUMN_CATEGORY = 'category_id';
     const COLUMN_USER_ID = 'user_id';
     const COLUMN_CITY = 'city';
     

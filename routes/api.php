@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdvertisementController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,8 @@ Route::group([
 
 ], function ($router) {
     Route::get('get-advertisements', [ AdvertisementController::class, 'index' ]);
+    Route::get('get-categories', [ CategoryController::class, 'index' ]);
+
     Route::post('get-advertisement', [ AdvertisementController::class, 'show' ]);
     Route::get('filter-adverts', [ AdvertisementController::class, 'filterAverts' ]);
     Route::put('edit-advertisement', [ AdvertisementController::class, 'update' ]);
