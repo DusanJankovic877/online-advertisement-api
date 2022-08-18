@@ -181,3 +181,5 @@ This application adheres to the api specifications set by the [Thinkster](https:
 ## Dependencies
 
 - [laravel-jwt-auth.readthedocs.io](https://laravel-jwt-auth.readthedocs.io/) - For authentication using JSON Web Tokens
+
+
