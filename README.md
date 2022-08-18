@@ -1,3 +1,5 @@
+To install Laravel, Composer is one of options which one i used 
+
 Composer - Dependency Management for PHP
 ========================================
 
