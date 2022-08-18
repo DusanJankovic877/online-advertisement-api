@@ -88,7 +88,7 @@ You can now access the server at http://localhost:8000
 
 Open the DatabaseSeeder and set the property values as per your requirement
 
-**Note*** I have manualy seeded category data
+**Note*** I have manualy seeded category data, so i added categories table export to the project.
 
 Run the database seeder and you're done
 
