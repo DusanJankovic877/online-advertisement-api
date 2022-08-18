@@ -1,5 +1,5 @@
 # online-advertisement-api
-There is few ways to install Laravel, I used Composer for installation. Docker can be used also but i didn't use it
+There is few ways to install Laravel, I used Composer for installation. Docker can be used also but i didn't use it.
 
 Composer - Dependency Management for PHP
 ========================================
