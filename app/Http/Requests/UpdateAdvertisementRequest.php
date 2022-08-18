@@ -29,7 +29,7 @@ class UpdateAdvertisementRequest extends FormRequest
             'description' => 'required|string|max:200|min:20',
             'image_url' => 'required|string|max:200',
             'price' => 'required|string|max:5|min:2',
-            'category' => 'required|string|max:40|min:5',
+            'category_id' => 'required|numeric|max:10|min:1',
             'city' => 'required|string|max:20|min:5',
             'user_id' => 'required|numeric',
         ];

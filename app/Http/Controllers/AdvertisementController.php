@@ -49,7 +49,7 @@ class AdvertisementController extends Controller
             'description' => $validated['description'],
             'image_url' => $validated['image_url'],
             'price' => $validated['price'],
-            'user_id' => $validated['user_id'],
+            'user_id' => $validated['userId'],
             'category_id' => $validated['category'],
             'city' => $validated['city']
         ]);
@@ -73,7 +73,7 @@ class AdvertisementController extends Controller
      * @param  \App\Models\Advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdvertisementRequest $request)//public function update(Request $request, Advertisement $advertisement)
+    public function update(UpdateAdvertisementRequest $request)
     {
         $advertisement  = Advertisement::findOrFail($request['id']);
         $validated = $request->validated();
@@ -83,7 +83,7 @@ class AdvertisementController extends Controller
             'image_url' => $validated['image_url'],
             'price' => $validated['price'],
             'city' => $validated['city'],
-            'category' => $validated['category']
+            'category_id' => $validated['category_id']
         ]);
         return response()->json([
             'message' => 'You have successfully updated your advertisement.', 
@@ -99,11 +99,10 @@ class AdvertisementController extends Controller
      */
     public function destroy($id)
     {
-        // return ['works' => $id];
         $advertisementToDelete = Advertisement::findOrFail($id);
         $advertisementToDelete->delete();
         return response()->json([
-            'oneItemMessage' => 'You have successfully delete advertisement', 
+            'message' => 'You have successfully delete advertisement', 
             'oneItemDelete' => true
         ]);
     }

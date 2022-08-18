@@ -29,7 +29,7 @@ class CreateAdvertisementRequest extends FormRequest
             'image_url' => 'required|string|max:200',
             'price' => 'required|string|max:5|min:2',
             'category' => 'required|numeric|max:10|min:1',
-            'user_id' => 'required|numeric',
+            'userId' => 'required|numeric',
             'city' => 'required|string|max:20|min:5',
         ];
     }
