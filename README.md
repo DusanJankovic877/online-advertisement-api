@@ -37,6 +37,11 @@ For usage, see [the documentation](https://getcomposer.org/doc/).
 # Getting started
 
 ## Installation
+install Laravel 
+```composer global require "laravel/installer"```
+
+install Laravel Project
+```composer create-project --prefer-dist laravel/laravel blog"```
 
 Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/5.4/installation#installation)
 
