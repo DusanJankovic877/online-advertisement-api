@@ -9,17 +9,6 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
  */
 class CategoryFactory extends Factory
 {
-    private $categories = [
-        'Clothing', 
-        'Tools', 
-        'Sports', 
-        'Accessories', 
-        'Furniture', 
-        'Pets', 
-        'Games', 
-        'Books',
-        'Technology'
-    ];
     /**
      * Define the model's default state.
      *

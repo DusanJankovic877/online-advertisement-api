@@ -24,7 +24,6 @@ class AdvertisementFactory extends Factory
             'description' => fake()->text(100),
             'image_url' => fake()->imageUrl($width = 640, $height = 480, 'cats', true, 'Faker', true),
             'price' => fake()->numberBetween(10,50),
-            // 'category' =>fake()->text(40),
             'category_id' =>fake()->numberBetween(1,9),
             'user_id' => fake()->numberBetween(1,10),
             'city' => fake()->word()

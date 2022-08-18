@@ -14,13 +14,18 @@ class AdvertisementController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return $advertisements
      */
     public function index()
     {
         $advertisements = Advertisement::with('category')->paginate(20);
         return $advertisements;
     }
+    /**
+     * Filter advertisements
+     * 
+     * @return $advertisements
+     */
     public function filterAverts(){
         $category = request('category');
         $title = request('title') === 'null' ? '' : request('title');
